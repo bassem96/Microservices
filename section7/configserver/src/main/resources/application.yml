@@ -1,0 +1,38 @@
+spring:
+  appliction:
+    name: "configserver"
+  profiles:
+    #active: native this is used when the search locations are classpath or file sytstem
+    active: git #this is used when the search locations are git
+  cloud:
+    config:
+      server:
+        #native:
+          #search-locations: "classpath:/config" this method is to search path using classpath
+          #search-locations: "file:D:/Courses/Spring microservices course/microservices/section6"
+        git:
+          uri: "https://github.com/eazybytes/eazybytes-config"
+          default-label: main
+          timeout: 5
+          clone-on-start: true
+          force-pull: true
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  health:
+    readiness-state:
+      enabled: true
+    liveness-state:
+      enabled: true
+    endpoint:
+      health:
+        probes:
+          enabled: true
+encrypt:
+  key: "45D81EC1EF61DF9AD8D3E5BB397F9"
+
+server:
+  port: 8071
