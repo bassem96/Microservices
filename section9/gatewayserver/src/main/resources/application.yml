@@ -1,0 +1,33 @@
+spring:
+  application:
+    name: "gatewayserver"
+  config: #connect to the config server
+    import: "optional:configserver:http://localhost:8071/"
+  cloud:
+    gateway:
+      discovery:
+        locator:
+          enabled: false #get microservices from service discovery
+          lowerCaseServiceId: true #accept the service name in lower case
+management: # for the actuator
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    gateway:
+      enabled: true
+  info:
+    env:
+      enabled: true
+info: #for eureka dashboard
+  app:
+    name: "gatewayserver"
+    description: "Eazy Bank gatewayserver Application"
+    version: "1.0.0"
+
+logging:
+  level:
+    com:
+      eazybytes:
+        gatewayserver: DEBUG
